@@ -1,3 +1,29 @@
+var skyMaterial = new BABYLON.SkyMaterial("skyMaterial", scene);
+skyMaterial.backFaceCulling = false;
+
+skyMaterial.turbidity = 1; // Represents the amount (scattering) of haze as opposed to molecules in atmospher
+
+skyMaterial.luminance = 1; // Controls the overall luminance of sky in interval ]0, 1,190[
+
+// Control the planet's orientation over the sun
+skyMaterial.inclination = 0.5; // The solar inclination, related to the solar azimuth in interval [0, 1]
+skyMaterial.azimuth = 0.25; // The solar azimuth in interval [0, 1]
+
+
+
+var skybox = BABYLON.Mesh.CreateBox("skyBox", 1000.0, scene);
+skybox.material = skyMaterial;
+
+// Manually set the sun position
+skyMaterial.useSunPosition = true; // Do not set sun position from azimuth and inclination
+skyMaterial.sunPosition = new BABYLON.Vector3(0, 100, 0);
+
+skyMaterial.rayleigh = 2; // Represents the sky appearance (globally)
+
+// Set the horizon elevation relative to the camera position
+skyMaterial.cameraOffset.y = scene.activeCamera.globalPosition.y;
+
+
 function createBox(scene){
     let box = BABYLON.MeshBuilder.CreateBox("box", scene);
     box.position.y = 3;
