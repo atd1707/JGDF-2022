@@ -24,6 +24,17 @@ function createBox(scene){
   return box;
 }
 
+function createBox2(scene){
+  let box = BABYLON.MeshBuilder.CreateBox("box", scene);
+  box.position.x = 5;
+  box.position.y = 5;
+  box.position.z = 5;
+
+  return box;
+}
+
+
+
 export default function createStartScene(engine) {
 let that = {};
 let scene = that.scene = new BABYLON.Scene(engine);
@@ -35,6 +46,7 @@ let scene = that.scene = new BABYLON.Scene(engine);
 
 that.scene.clearColor = new BABYLON.Color3.Blue;
 that.box = createBox(scene);
+that.box2 = createBox2(scene);
 that.camera = createArcRotateCamera(scene);
 
 
