@@ -18,4 +18,12 @@ export default function createStartScene(engine) {
 	    
     return that;
 
-}
+} 
+
+const xSlide = new BABYLON.Animation(
+	"xSlide",
+	"position.x",
+	frameRate,
+	BABYLON.Animation.ANIMATIONTYPE_FLOAT,
+	BABYLON.Animation.ANIMATIONLOOPMODE_CYCLE
+);
