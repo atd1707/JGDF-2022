@@ -157,3 +157,29 @@ function createColorShift(frameRate) {
     return colorShift;
 }
 
+function actionManager(scene){
+    scene.actionManager = new BABYLON.ActionManager(scene);
+
+    scene.actionManager.registerAction(
+        new BABYLON.ExecuteCodeAction(
+            {
+            trigger: BABYLON.ActionManager.OnKeyDownTrigger,
+            //parameters: 'w'      
+            },
+            function(evt) {compassKey(evt.sourceEvent.key,true); }
+        )
+    );
+
+    scene.actionManager.registerAction(
+        new BABYLON.ExecuteCodeAction(
+            {
+            trigger: BABYLON.ActionManager.OnKeyUpTrigger
+            
+            },
+            function(evt) {compassKey(evt.sourceEvent.key,false); }
+        )
+    );   
+
+
+    return scene.actionManager;
+}
