@@ -1,15 +1,4 @@
 
-
-
-function createArcRotateCamera(scene){
-  let camAlpha = -Math.PI / 2,
-  camBeta  =  Math.PI / 2.5,
-  camDist  =  10,
-  camTarget = new BABYLON.Vector3(0, 0, 0); 
-  
-  camera.attachControl(true);
-  return camera;
-
 function createSphere(scene){
   let sphere = BABYLON.MeshBuilder.CreateSphere("sphere", { diameter: 0.75, segments: 32 }, scene);
   sphere.position.x = 0;
@@ -108,9 +97,27 @@ function createBox10(scene){
   box.position.x = 0;
   box.position.y = 7.5;
   box.position.z = 0;
-
-  return box;
 }
+  return box;function createArcRotateCamera(scene){
+    let camAlpha = -Math.PI / 2,
+    camBeta  =  Math.PI / 2.5,
+    camDist  =  10,
+    camTarget = new BABYLON.Vector3(0, 0, 0);    
+    camera.attachControl(true);
+    return camera;
+
+}export default function createStartScene(engine) {
+  let that = {};
+  let scene = that.scene = new BABYLON.Scene(engine);
+  //scene.debugLayer.show();
+
+  function createLight(scene){
+    const light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0),scene);
+    light.intensity = 0.7;
+    return light;
+  }
+   
+
 that.scene.clearColor = new BABYLON.Color3.Blue;
 that.box = createBox1(scene);
 that.box2 = createBox2(scene);
@@ -129,4 +136,8 @@ let camera = that.camera = createArcRotateCamera(scene);
  
   
 
-  return that;}
+  return that;
+}
+
+ 
+
