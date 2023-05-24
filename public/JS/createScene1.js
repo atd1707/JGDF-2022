@@ -1,7 +1,6 @@
-export default function createStartScene(engine) {
-  let that = {};
-  let scene = that.scene = new BABYLON.Scene(engine);
-  //scene.debugLayer.show();
+
+
+
 function createArcRotateCamera(scene){
   let camAlpha = -Math.PI / 2,
   camBeta  =  Math.PI / 2.5,
@@ -127,14 +126,7 @@ let light = that.light = createLight(scene);
 let sphere = that.sphere = createSphere(scene);
 let ground = that.ground = createGround(scene);
 let camera = that.camera = createArcRotateCamera(scene);
-
-
-
-
-  
  
   
 
-  return that;
-}
-}
+  return that;}
