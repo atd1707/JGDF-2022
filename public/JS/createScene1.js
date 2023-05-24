@@ -62,17 +62,19 @@ function createLight(scene){
   return light;
 }
 
-function createBox(scene){
+function createBox1(scene){
   let box = BABYLON.MeshBuilder.CreateBox("box", scene);
+  box.position.x = 0;
   box.position.y = 1;
+   box.position.z = 0;
   return box;
 }
 
 function createBox2(scene){
   let box = BABYLON.MeshBuilder.CreateBox("box", scene);
-  box.position.x = 5;
-  box.position.y = 5;
-  box.position.z = 5;
+  box.position.x = 0;
+  box.position.y = 2.5
+  box.position.z = 1.5;
 
   return box;
 }
@@ -80,72 +82,72 @@ function createBox2(scene){
 
   function createBox3(scene){
     let box = BABYLON.MeshBuilder.CreateBox("box", scene);
-    box.position.x = 4.5;
-    box.position.y = 4.5;
-    box.position.z = 4.5;
+    box.position.x = 0;
+  box.position.y =0;
+  box.position.z = -1.5;
   
     return box;
 }
 
 function createBox4(scene){
   let box = BABYLON.MeshBuilder.CreateBox("box", scene);
-  box.position.x = 6;
-  box.position.y = 6;
-  box.position.z = 6;
+  box.position.x = 0;
+  box.position.y = 2.5;
+    box.position.z = 1.5
 
   return box;
 }
 
 function createBox5(scene){
   let box = BABYLON.MeshBuilder.CreateBox("box", scene);
-  box.position.x = 6.5;
-  box.position.y = 6.5;
-  box.position.z = 6.5;
+  box.position.x = 0;
+  box.position.y = 2.5;
+  box.position.z = 0;
 
   return box;
 }
 
 function createBox6(scene){
   let box = BABYLON.MeshBuilder.CreateBox("box", scene);
-  box.position.x = 7;
-  box.position.y = 7;
-  box.position.z = 7;
+  box.position.x = 0;
+  box.position.y = 2.5;
+  box.position.z = 1.5;
 
   return box;
 }
 
 function createBox7(scene){
   let box = BABYLON.MeshBuilder.CreateBox("box", scene);
-  box.position.x = 7.5;
-  box.position.y = 7.5;
-  box.position.z = 7.5;
+  box.position.x = 0;
+  box.position.y = 5;
+  box.position.z = -1.5;
 
   return box;
 }
 
 function createBox8(scene){
   let box = BABYLON.MeshBuilder.CreateBox("box", scene);
-  box.position.x = 8;
-  box.position.y = 8;
-  box.position.z = 8;
+  box.position.x = 0;
+  box.position.y = 5;
+  box.position.z = 0;
 
   return box;
 }
 
 function createBox9(scene){
   let box = BABYLON.MeshBuilder.CreateBox("box", scene);
-  box.position.x = 8.5;
-  box.position.y = 8.5;
-  box.position.z = 8.5;
+  box.position.x = 0;
+  box.position.y = 5;
+  box.position.z = 1.5;
 
   return box;
 }
 
 function createBox10(scene){
   let box = BABYLON.MeshBuilder.CreateBox("box", scene);
-  box.position.x = 9;
-  box.position.y = 9;
-  box.position.z = 9;
+  box.position.x = 0;
+  box.position.y = 7.5;
+  box.position.z = 0;
 
   return box;
 }
