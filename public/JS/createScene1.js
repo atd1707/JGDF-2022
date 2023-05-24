@@ -4,7 +4,7 @@ function createSphere(scene){
   let sphere = BABYLON.MeshBuilder.CreateSphere("sphere", { diameter: 0.75, segments: 32 }, scene);
   sphere.position.x = 0;
   sphere.position.y = 7.5;
-   sphereposition.z = 0;
+   sphere.position.z = 0;
   return sphere;
 }
  
@@ -101,9 +101,8 @@ function createBox10(scene){
 
   return box;
 }
-
 that.scene.clearColor = new BABYLON.Color3.Blue;
-that.box = createBox(scene);
+that.box = createBox1(scene);
 that.box2 = createBox2(scene);
 that.box3 = createBox3(scene);
 that.box4 = createBox4(scene);
@@ -113,7 +112,6 @@ that.box7 = createBox7(scene);
 that.box8 = createBox8(scene);
 that.box9 = createBox9(scene);
 that.box10 = createBox10(scene);
-that.camera = createArcRotateCamera(scene);
 let light = that.light = createLight(scene);
 let sphere = that.sphere = createSphere(scene);
 let ground = that.ground = createGround(scene);
