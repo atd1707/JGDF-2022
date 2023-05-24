@@ -2,9 +2,9 @@
  
 function createSphere(scene){
   let sphere = BABYLON.MeshBuilder.CreateSphere("sphere", { diameter: 0.75, segments: 32 }, scene);
-  ox.position.x = 0;
-  box.position.y = 7.5;
-   box.position.z = 0;
+  sphere.position.x = 0;
+  sphere.position.y = 7.5;
+   sphereposition.z = 0;
   return sphere;
 }
  
