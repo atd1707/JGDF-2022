@@ -1,18 +1,10 @@
-function createBox(scene){
-  let box = BABYLON.MeshBuilder.CreateBox("box", scene);
-  box.position.y = 3;
-  return box;
-}
-  
-function createLight(scene){
-  const light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0),scene);
-  light.intensity = 0.7;
-  return light;
-}
+0
  
 function createSphere(scene){
-  let sphere = BABYLON.MeshBuilder.CreateSphere("sphere", { diameter: 2, segments: 32 }, scene);
-  sphere.position.y = 1;
+  let sphere = BABYLON.MeshBuilder.CreateSphere("sphere", { diameter: 0.75, segments: 32 }, scene);
+  ox.position.x = 0;
+  box.position.y = 7.5;
+   box.position.z = 0;
   return sphere;
 }
  
@@ -20,30 +12,6 @@ function createGround(scene){
   let ground = BABYLON.MeshBuilder.CreateGround("ground", { width: 6, height: 6 }, scene);
   return ground;
 }
-
-function createArcRotateCamera(scene){
-  let camAlpha = -Math.PI / 2,
-  camBeta  =  Math.PI / 2.5,
-  camDist  =  10,
-  camTarget = new BABYLON.Vector3(0, 0, 0); 
-  let camera = new BABYLON.ArcRotateCamera("camera1", camAlpha, camBeta, camDist, camTarget, scene);
-  camera.attachControl(true);
-  return camera;
-}
-
-export default function createStartScene(engine) {
-  let that = {};
-  let scene = that.scene = new BABYLON.Scene(engine);
-  //scene.debugLayer.show();
-
-  let box = that.starbox = createBox(scene);
-  let light = that.light = createLight(scene);
-  let sphere = that.sphere = createSphere(scene);
-  let ground = that.ground = createGround(scene);
-  let camera = that.camera = createArcRotateCamera(scene);
-  return that;
-}
-
 
 
 function createArcRotateCamera(scene){
@@ -151,7 +119,7 @@ function createBox10(scene){
 
   return box;
 }
-export default function createStartScene(engine) {
+ function createStartScene(engine) {
 let that = {};
 let scene = that.scene = new BABYLON.Scene(engine);
   //scene.clearColor = new BABYLON.Color3.Black;
@@ -172,7 +140,9 @@ that.box8 = createBox8(scene);
 that.box9 = createBox9(scene);
 that.box10 = createBox10(scene);
 that.camera = createArcRotateCamera(scene);
-
+let light = that.light = createLight(scene);
+let sphere = that.sphere = createSphere(scene);
+let ground = that.ground = createGround(scene);
 
 return that;
-};
+}
