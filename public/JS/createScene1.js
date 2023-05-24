@@ -1,5 +1,16 @@
-0
- 
+export default function createStartScene(engine) {
+  let that = {};
+  let scene = that.scene = new BABYLON.Scene(engine);
+  //scene.debugLayer.show();
+function createArcRotateCamera(scene){
+  let camAlpha = -Math.PI / 2,
+  camBeta  =  Math.PI / 2.5,
+  camDist  =  10,
+  camTarget = new BABYLON.Vector3(0, 0, 0); 
+  
+  camera.attachControl(true);
+  return camera;
+
 function createSphere(scene){
   let sphere = BABYLON.MeshBuilder.CreateSphere("sphere", { diameter: 0.75, segments: 32 }, scene);
   sphere.position.x = 0;
@@ -115,15 +126,15 @@ that.box10 = createBox10(scene);
 let light = that.light = createLight(scene);
 let sphere = that.sphere = createSphere(scene);
 let ground = that.ground = createGround(scene);
+let camera = that.camera = createArcRotateCamera(scene);
 
 
-function createArcRotateCamera(scene){
-  let camAlpha = -Math.PI / 2,
-  camBeta  =  Math.PI / 2.5,
-  camDist  =  10,
-  camTarget = new BABYLON.Vector3(0, 0, 0); 
-  let camera = new BABYLON.ArcRotateCamera("camera1", camAlpha, camBeta, camDist, camTarget, scene);
-  camera.attachControl(true);
-  return camera;
+
+
+  
+ 
+  
+
+  return that;
 }
-return that;
+}
