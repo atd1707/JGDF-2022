@@ -114,6 +114,15 @@ function createBox10(scene){
   function createLight(scene){
     const light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0),scene);
     light.intensity = 0.7;
+    var light0 = new BABYLON.HemisphericLight("hemiLight", new BABYLON.Vector3(-1, 1, 0), scene);
+	  light0.diffuse = new BABYLON.Color3(1, 0, 0);
+	  light0.specular = new BABYLON.Color3(0, 1, 0);
+    light0.groundColor = new BABYLON.Color3(0, 1, 0);
+	
+	  var light1 = new BABYLON.HemisphericLight("hemiLight", new BABYLON.Vector3(-1, 1, 0), scene);
+	  light1.diffuse = new BABYLON.Color3(1, 1, 1);
+	  light1.specular = new BABYLON.Color3(1, 1, 1);
+	  light1.groundColor = new BABYLON.Color3(0, 0, 0);
     return light;
   }
    
