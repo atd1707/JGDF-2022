@@ -136,12 +136,6 @@ function  createCapsule(scene){
 }
   
   
-  export default function createStartScene(engine) {
-    let that = {};
-  let scene = that.scene = new BABYLON.Scene(engine);
-  //scene.debugLayer.show();
-
-  }
 
 that.scene.clearColor = new BABYLON.Color3.Blue;
 that.box = createBox1(scene);
