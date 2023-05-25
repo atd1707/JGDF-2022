@@ -227,7 +227,13 @@ function createSphere(scene){
   sphere.position.z = 0;
   return sphere;
 }
-
+function creaateCapsule(scene){
+  const capsule = new BABYLON.MeshBuilder.CreateCapsule("capsule", {}, scene)
+  capsule.position.x = 0;
+  capsule.position.y = 1.825;
+  capsule.position.z = -1.5;
+  return sphere;
+}
 
 
 export default function createStartScene(engine) {
@@ -251,6 +257,7 @@ that.box8 = createBox8(scene);
 that.box9 = createBox9(scene);
 that.box10 = createBox10(scene);
 let sphere = that.sphere = createSphere(scene);
+let capsule = that.capsule = createcapsule(scene);
 that.camera = createArcRotateCamera(scene);
 let light = that.light = createLight(scene);
 let ground = that.ground = createGround(scene);
