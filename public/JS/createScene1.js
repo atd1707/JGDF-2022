@@ -27,9 +27,6 @@ function createGround(scene){
 
 
 function createBox1(scene){
-  let side1 = new BABYLON.Color4( 1, 0.2, 0.3, 0.5);
-  let colors = [side1,side1,side1,side1,side1.side1];
-  let box = BABYLON.MeshBuilder.CreateBox("box", colors, scene);
   box.position.x = 0;
   box.position.y = 1;
   box.position.z = 0;
