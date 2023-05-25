@@ -33,20 +33,12 @@ function createBox1(scene){
   box.position.x = 0;
   box.position.y = 1;
   box.position.z = 0;
-
-function createSphere(scene){
-  let sphere = BABYLON.MeshBuilder.CreateSphere("sphere", { diameter: 0.75, segments: 32 }, scene);
-  sphere.position.x = 0;
-  sphere.position.y = 7.5;
-  sphere.position.z = 0;
-  return sphere;
-}
   
   
    return box;
 }
 
-function createBox2(sc3ne){
+function createBox2(scene){
   let box = BABYLON.MeshBuilder.CreateBox("box", scene);
   box.position.x = -1.5;
   box.position.y = 1;
@@ -135,19 +127,21 @@ function createSphere(scene){
   sphere.position.z = 0;
   return sphere;
 } 
-function  createCapsule(scene) {  
+function  createCapsule(scene){  
   let capsule = new BABYLON.MeshBuilder.CreateCapsule("capsule", {radius:0.5, capSubdivisions: 1, height:2, tessellation:4, topCapSubdivisions:12});
   capsule.position.x = 0;
   capsule.position.y = 1.825;
   capsule.position.z = -1.5;
   return capsule;
 }
-export default function createStartScene(engine) {
-  let that = {};
+  
+  
+  export default function createStartScene(engine) {
+    let that = {};
   let scene = that.scene = new BABYLON.Scene(engine);
   //scene.debugLayer.show();
 
-   
+  }
 
 that.scene.clearColor = new BABYLON.Color3.Blue;
 that.box = createBox1(scene);
@@ -167,4 +161,4 @@ that.camera = createArcRotateCamera(scene);
 let light = that.light = createLight(scene);
 let ground = that.ground = createGround(scene);
 
-  return that;}
+  return that;
