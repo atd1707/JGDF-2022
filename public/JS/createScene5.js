@@ -37,26 +37,13 @@ export default function createStartScene(engine) {
     let scene = that.scene = new BABYLON.Scene(engine);
     //scene.debugLayer.show();
 
-    let box = that.starbox = createBox(scene);
+    let box = that.starbox = createBox(scene)
     let light = that.light = createLight(scene);
     let sphere = that.sphere = createSphere(scene);
     let ground = that.ground = createGround(scene);
     let camera = that.camera = createArcRotateCamera(scene);
-    return that;
-}   return camera;
-}
+    return;
 
-export default function createStartScene(engine) {
-    let that = {};
-    let scene = that.scene = new BABYLON.Scene(engine);
-    //scene.debugLayer.show();
-
-    let box = that.starbox = createBox(scene);
-    let light = that.light = createLight(scene);
-    let sphere = that.sphere = createSphere(scene);
-    let ground = that.ground = createGround(scene);
-    let camera = that.camera = createArcRotateCamera(scene);
-    return that;
 }
 const frameRate = 30;
 
