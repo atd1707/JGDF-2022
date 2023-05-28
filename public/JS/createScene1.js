@@ -3,6 +3,11 @@ var createScene = async function () {
   scene.debugLayer.show();
 }
 
+var createScene = async function () {
+  const scene = new BABYLON.Scene(engine);
+  scene.debugLayer.show();
+}
+
 
 function createBox1(scene){
   box.position.x = 0;
@@ -120,11 +125,45 @@ function createArcRotateCamera(scene){
   return camera;
 }  
 
+<<<<<<< HEAD
 function createGround(scene){
   let ground = BABYLON.MeshBuilder.CreateGround("ground", { width: 6, height: 6 }, scene);
   return ground;
 }
 
+=======
+
+function createGround(scene){
+  let ground = BABYLON.MeshBuilder.CreateGround("ground", { width: 6, height: 6 }, scene);
+  return  ground;
+}
+
+function createArcRotateCamera(scene){
+    let camAlpha = -Math.PI / 2,
+    camBeta  =  Math.PI / 2.5,
+    camDist  =  10,
+    camTarget = new BABYLON.Vector3(0, 0, 0);    
+    camera.attachControl(true);
+    return camera;
+
+}
+
+ function createStartScene(engine) {
+  let that = {};
+  let scene = that.scene = new BABYLON.Scene(engine);
+  //scene.debugLayer.show();
+}
+  function createLight(scene){
+    const light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0),scene);
+    light.intensity = 0.7;
+    var light0 = new BABYLON.HemisphericLight("hemiLight", new BABYLON.Vector3(-1, 1, 0), scene);
+	  light0.diffuse = new BABYLON.Color3(1, 0, 0);
+	  light0.specular = new BABYLON.Color3(0, 1, 0);
+    light0.groundColor = new BABYLON.Color3(0, 1, 0);
+  }
+   
+  
+>>>>>>> bae9dd4c272451dbac7422101eb130786e9bc1fa
 that.scene.clearColor = new BABYLON.Color3.Blue;
 that.box = createBox1(scene);
 that.box2 = createBox2(scene);
@@ -135,6 +174,7 @@ that.box6 = createBox6(scene);
 that.box7 = createBox7(scene);
 that.box8 = createBox8(scene);
 that.box9 = createBox9(scene);
+<<<<<<< HEAD
 that.box10 = createBox10(scene);
 
 let sphere = that.sphere = createSphere(scene);
@@ -144,3 +184,23 @@ let light = that.light = createLight(scene);
 let ground = that.ground = createGround(scene);
 
   return that;
+=======
+that.box10 = createBox10(scene)
+let light = that.light = createLight(scene);
+let sphere = that.sphere = createSphere(scene);
+let ground = that.ground = createGround(scene);
+let camera = that.camera = createArcRotateCamera(scene);
+ 
+  
+
+  return that;
+
+
+ 
+
+
+
+
+
+
+>>>>>>> bae9dd4c272451dbac7422101eb130786e9bc1fa
