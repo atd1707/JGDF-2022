@@ -1,12 +1,3 @@
-
-function createSphere(scene){
-  let sphere = BABYLON.MeshBuilder.CreateSphere("sphere", { diameter: 0.75, segments: 32 }, scene);
-  sphere.position.x = 0;
-  sphere.position.y = 7.5;
-  sphere.position.z = 0;
-  return sphere;
-}
- 
 function createGround(scene){
   let ground = BABYLON.MeshBuilder.CreateGround("ground", { width: 6, height: 6 }, scene);
   return ground;
@@ -98,6 +89,15 @@ function createBox10(scene){
   box.position.y = 7.5;
   box.position.z = 0;
 }
+
+function createSphere(scene){
+  let sphere = BABYLON.MeshBuilder.CreateSphere("sphere", { diameter: 0.75, segments: 32 }, scene);
+  sphere.position.x = 0;
+  sphere.position.y = 7.5;
+  sphere.position.z = 0;
+  return sphere;
+}
+
   return box;function createArcRotateCamera(scene){
     let camAlpha = -Math.PI / 2,
     camBeta  =  Math.PI / 2.5,
@@ -119,11 +119,7 @@ function createBox10(scene){
 	  light0.specular = new BABYLON.Color3(0, 1, 0);
     light0.groundColor = new BABYLON.Color3(0, 1, 0);
 	
-	  var light1 = new BABYLON.HemisphericLight("hemiLight", new BABYLON.Vector3(-1, 1, 0), scene);
-	  light1.diffuse = new BABYLON.Color3(1, 1, 1);
-	  light1.specular = new BABYLON.Color3(1, 1, 1);
-	  light1.groundColor = new BABYLON.Color3(0, 0, 0);
-    return light;
+	  
   }
    
 
