@@ -1,4 +1,3 @@
-/*
 export default function createStartScene(engine) {
 	let that = {};
 	let scene = (that.scene = new BABYLON.Scene(engine));
@@ -188,9 +187,8 @@ function createArcRotateCamera(scene) {
 	skybox.material = skyboxMaterial;			
 	    
     return that;
-}   
- */   
 
+<<<<<<< HEAD
 
 
 const frameRate = 10;
@@ -405,3 +403,6 @@ const axis = showAxis();
 */
 >>>>>>> ab92d71ae028200a3bd42b8433f03affaa7f58c5
 >>>>>>> bae9dd4c272451dbac7422101eb130786e9bc1fa
+=======
+}
+>>>>>>> parent of 24e4961 (ok)

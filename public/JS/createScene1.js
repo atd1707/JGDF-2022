@@ -1,6 +1,21 @@
+<<<<<<< HEAD
 var createScene = async function () {
   const scene = new BABYLON.Scene(engine);
   scene.debugLayer.show();
+=======
+
+
+
+
+function createArcRotateCamera(scene){
+  let camAlpha = -Math.PI / 2,
+  camBeta  =  Math.PI / 2.5,
+  camDist  =  10,
+  camTarget = new BABYLON.Vector3(0, 0, 0); 
+  let camera = new BABYLON.ArcRotateCamera("camera1", camAlpha, camBeta, camDist, camTarget, scene);
+  camera.attachControl(true);
+  return camera;
+>>>>>>> parent of 24e4961 (ok)
 }
 
 var createScene = async function () {
@@ -8,6 +23,7 @@ var createScene = async function () {
   scene.debugLayer.show();
 }
 
+<<<<<<< HEAD
 
 function createBox1(scene){
   box.position.x = 0;
@@ -16,10 +32,17 @@ function createBox1(scene){
   
   
    return box;
+=======
+function createBox(scene){
+  let box = BABYLON.MeshBuilder.CreateBox("box", scene);
+  box.position.y = 1;
+  return box;
+>>>>>>> parent of 24e4961 (ok)
 }
 
 function createBox2(scene){
   let box = BABYLON.MeshBuilder.CreateBox("box", scene);
+<<<<<<< HEAD
   box.position.x = -1.5;
   box.position.y = 1;
   box.position.z = 0;
@@ -42,10 +65,16 @@ function createBox4(scene){
   box.position.x = 0;
   box.position.y = 2.5;
   box.position.z = 1;
+=======
+  box.position.x = 5;
+  box.position.y = 5;
+  box.position.z = 5;
+>>>>>>> parent of 24e4961 (ok)
 
   return box;
 }
 
+<<<<<<< HEAD
 function createBox5(scene){
   let box = BABYLON.MeshBuilder.CreateBox("box", scene);
   box.position.x = -1.5;
@@ -145,6 +174,18 @@ function createArcRotateCamera(scene){
     camTarget = new BABYLON.Vector3(0, 0, 0);    
     camera.attachControl(true);
     return camera;
+=======
+
+
+export default function createStartScene(engine) {
+let that = {};
+let scene = that.scene = new BABYLON.Scene(engine);
+  //scene.clearColor = new BABYLON.Color3.Black;
+//const camera = new BABYLON.ArcRotateCamera("camera", -Math.PI / 2, Math.PI / 2.5, 10, new BABYLON.Vector3(0, 0, 0));
+  //camera.attachControl(true);
+//const light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(1, 1, 0), scene);
+  //light.intensity = 0.7;
+>>>>>>> parent of 24e4961 (ok)
 
 }
 
@@ -165,8 +206,9 @@ function createArcRotateCamera(scene){
   
 >>>>>>> bae9dd4c272451dbac7422101eb130786e9bc1fa
 that.scene.clearColor = new BABYLON.Color3.Blue;
-that.box = createBox1(scene);
+that.box = createBox(scene);
 that.box2 = createBox2(scene);
+<<<<<<< HEAD
 that.box3 = createBox3(scene);
 that.box4 = createBox4(scene);
 that.box5 = createBox5(scene);
@@ -179,10 +221,12 @@ that.box10 = createBox10(scene);
 
 let sphere = that.sphere = createSphere(scene);
 let capsule = that.capsule = createCapsule(scene);
+=======
+>>>>>>> parent of 24e4961 (ok)
 that.camera = createArcRotateCamera(scene);
-let light = that.light = createLight(scene);
-let ground = that.ground = createGround(scene);
 
+
+<<<<<<< HEAD
   return that;
 =======
 that.box10 = createBox10(scene)
@@ -204,3 +248,7 @@ let camera = that.camera = createArcRotateCamera(scene);
 
 
 >>>>>>> bae9dd4c272451dbac7422101eb130786e9bc1fa
+=======
+return that;
+};
+>>>>>>> parent of 24e4961 (ok)

@@ -42,6 +42,7 @@ export default function createStartScene(engine) {
     let sphere = that.sphere = createSphere(scene);
     let ground = that.ground = createGround(scene);
     let camera = that.camera = createArcRotateCamera(scene);
+<<<<<<< HEAD
     return;
 
 }
@@ -373,3 +374,7 @@ export default function createStartScene(engine) {
 =======
 >>>>>>> ab92d71ae028200a3bd42b8433f03affaa7f58c5
 >>>>>>> bae9dd4c272451dbac7422101eb130786e9bc1fa
+=======
+    return that;
+}
+>>>>>>> parent of 24e4961 (ok)
