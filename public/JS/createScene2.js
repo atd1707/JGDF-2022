@@ -61,9 +61,12 @@ roofMat.diffuseTexture = new BABYLON.Texture("https://assets.babylonjs.com/envir
 
 const roof = BABYLON.MeshBuilder.CreateCylinder("roof", {diameter: 1.3, height: 1.2, tessellation: 3});
 roof.material = roofMat;
-roof.scaling.x = 0.75;
+roof.position.y = 1.5;
+roof.position.x = 0;
+roof.position.z = 0; 
+//roof.scaling.x = 0.75;
 //roof.rotation.z = Math.PI / 2;
-roof.position.y = 1.22;
+//roof.position.y = 1.22;
 
 return roof;
 }
@@ -92,7 +95,7 @@ export default function createStartScene(engine) {
     //House
     let ground = buildGround(scene);
     let box = buildBox(scene);
-    let roof = buildroof(scene);
+    let roof = buildRoof(scene);
 
 
     
