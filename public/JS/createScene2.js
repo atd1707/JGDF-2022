@@ -92,7 +92,7 @@ export default function createStartScene(engine) {
     //House
     let ground = buildGround(scene);
     let box = buildBox(scene);
-    let roof == buildroof (scene);
+    let roof = buildroof(scene);
 
 
     
