@@ -40,7 +40,8 @@ const xSlide = new BABYLON.Animation(
 const buildHouse = (scene) => {
 const roof = buildRoof();
 const box = buildBox();
-
+//const box = buildbox2();
+//const roof = buildRoof2();
 return BABYLON.Mesh.MergeMeshes([box, roof], true, false, null, false, true);
 }
 
@@ -64,9 +65,9 @@ roof.material = roofMat;
 roof.position.y = 1.5;
 roof.position.x = 0;
 roof.position.z = 0; 
-//roof.scaling.x = 0.75;
-//roof.rotation.z = Math.PI / 2;
-//roof.position.y = 1.22;
+roof.scaling.x = 0.75;
+roof.rotation.z = Math.PI / 2;
+roof.position.y = 1.22;
 
 return roof;
 }
@@ -83,6 +84,35 @@ box.position.y = 0.5;
 //box.rotation.y = BABYLON.Tools.ToRadians(20)
  return box;
 }
+
+//const buildRoof = (scene) => {
+  //  const roofMat = new BABYLON.StandardMaterial("roofMat");
+    //roofMat.diffuseTexture = new BABYLON.Texture("https://assets.babylonjs.com/environments/roof.jpg");
+    
+    //const roof= BABYLON.MeshBuilder.CreateCylinder2("roof", {diameter: 1.3, height: 1.2, tessellation: 3});
+    //roof.material = roofMat;
+    //roof.position.y = 1.5;
+    //roof.position.x = 0;
+    //roof.position.z = 1.5; 
+    //roof.scaling.x = 0.75;
+    //roof.rotation.z = Math.PI / 2;
+    //roof.position.y = 1.22;
+    
+    //return roof;
+    //}
+    
+    //const buildB0x = (scene) => {
+    //const boxMat = new BABYLON.StandardMaterial("boxMat");
+    //boxMat.diffuseTexture = new BABYLON.Texture("https://www.babylonjs-playground.com/textures/floor.png");
+    
+    //const box = BABYLON.MeshBuilder.CreateBox2("box", {});
+    //box.material = boxMat;
+    //box.position.y = 1.5;
+    //box.scaling.x = 5;
+    //box.scaling = new BABYLON.Vector3(2, 1.5, 2);
+    //box.rotation.y = BABYLON.Tools.ToRadians(20)
+     //return box;
+    //}
 export default function createStartScene(engine) {
     let that = {};
     let scene = (that.scene = new BABYLON.Scene(engine));
@@ -92,10 +122,13 @@ export default function createStartScene(engine) {
     const light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(1, 1, 0), scene);
     light.intensity = 0.7;
 
+
     //House
     let ground = buildGround(scene);
     let box = buildBox(scene);
     let roof = buildRoof(scene);
+    //let box2 = buildBox2(scene);
+    //let roof2 = buildRoof2(scene);
 
 
     
