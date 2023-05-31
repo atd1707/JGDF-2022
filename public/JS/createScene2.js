@@ -52,7 +52,7 @@ return roof;
 
 const buildBox = (scene) => {
 const boxMat = new BABYLON.StandardMaterial("boxMat");
-boxMat.diffuseTexture = new BABYLON.Texture("https://www.babylonjs-playground.com/textures/cubehouse.png");
+boxMat.diffuseTexture = new BABYLON.Texture("https://www.babylonjs-playground.com/textures/semihouse.png");
 
 const box = BABYLON.MeshBuilder.CreateBox("box", {});
 box.material = boxMat;
@@ -60,7 +60,7 @@ box.position.y = 0.5;
  return box;
 }
 
-/export default function createStartScene(engine) {
+export default function createStartScene(engine) {
     let that = {};
     let scene = (that.scene = new BABYLON.Scene(engine));
     scene.clearColor = new BABYLON.Color3.Black;
