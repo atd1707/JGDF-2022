@@ -44,7 +44,7 @@ export default function createStartScene(engine) {
     let camera = that.camera = createArcRotateCamera(scene);
     return that;
 }   return camera;
-}
+
 
 export default function createStartScene(engine) {
     let that = {};
