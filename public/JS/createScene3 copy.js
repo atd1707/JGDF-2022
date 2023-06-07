@@ -1,7 +1,7 @@
 export default function createStartScene(engine) {
     let that = {};
     let scene = (that.scene = new BABYLON.Scene(engine));
-    let keyDownMap =[];
+
     // Low Poly Character with Blender Tutorial of Grant Abbitt: https://www.youtube.com/user/mediagabbitt
     // Character animations by Mixamo: https://www.mixamo.com/
 
@@ -61,49 +61,15 @@ export default function createStartScene(engine) {
         const walkingAnim = scene.getAnimationGroupByName("Walking");
         const walkingBackAnim = scene.getAnimationGroupByName("WalkingBack");
 
-        const movement = false;
-
-
-        scene.onKeyboardObservable.add((kbInfo) => {
-            switch (kbInfo.type) {
-                case BABYLON.KeyboardEventTypes.KEYDOWN:
-                    switch (kbInfo.event.key) {
-                        case "a":
-                        case "A":
-                            sambaAnim.stop(true, 1.0, sambaAnim.from, sambaAnim.to, false);
-                            walkingAnim.stop(true, 1.0, walkingAnim.from, walkingAnim.to, false);
-                            walkingBackAnim.stop(true, 1.0, walkingBackAnim.from, walkingAnim.to, false);
-                            idleAnim.start(true, 1.0, idleAnim.from, idleAnim.to, false);
-                            //hero.postion.x -= 0.1;
-                        break
-                        case "d":
-                        case "D":
-                            sambaAnim.start(true, 1.0, sambaAnim.from, sambaAnim.to, false);
-                            //hero.position.x += 0.1;
-                        break
-                        case "w":
-                        case "W":
-                            walkingAnim.start(true, 1.0, walkingAnim.from, walkingAnim.to, false);
-                            hero.position.z += 0.1;
-                        break
-                        case "s":
-                        case "S":
-                            walkingBackAnim.start(true, 1.0, walkingBackAnim.from, walkingAnim.to, false);
-                            hero.position.z -= 0.1;
-                        break
-                    }
-                break;
-            }
-        });
 
         //Play the Idle animation  
-        //idleAnim.start(true, 1.0, idleAnim.from, idleAnim.to, false);
+        idleAnim.start(true, 1.0, idleAnim.from, idleBackAnim.to, false);
         //Play the Samba animation  
         //sambaAnim.start(true, 1.0, sambaAnim.from, sambaAnim.to, false);
         //Play the walking animation  
         //walkingAnim.start(true, 1.0, walkingAnim.from, walkingAnim.to, false);
         //Play the walkingBack animation  
-        //walkingBackAnim.start(true, 1.0, walkingBackAnim.from, walkingBackAnim.to, false);
+        walkingBackAnim.start(true, 1.0, walkingBackAnim.from, walkingBackAnim.to, false);
     });
 
     return that;
