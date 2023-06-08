@@ -2,8 +2,7 @@ export default function createStartScene(engine) {
     let that = {};
     let scene = (that.scene = new BABYLON.Scene(engine));
     let keyDownMap =[];
-    // Low Poly Character with Blender Tutorial of Grant Abbitt: https://www.youtube.com/user/mediagabbitt
-    // Character animations by Mixamo: https://www.mixamo.com/
+    
 
     engine.enableOfflineSupport = false;
 

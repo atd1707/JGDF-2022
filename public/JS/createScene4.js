@@ -1,58 +1,70 @@
-import {setSceneIndex}        from "./createScenes.js";
+export default function createStartScene(engine) {
+    let that = {};
+    let scene = (that.scene = new BABYLON.Scene(engine));
 
-function createSceneButton(name, index, x,y, advtex){
-    var button = BABYLON.GUI.Button.CreateSimpleButton(name, index);
-        button.left = x;
-        button.top  =  y;
-        button.width = "80px"
-        button.height = "30px";
-        button.color = "white";
-        button.cornerRadius = 20;
-        button.background = "green";
-        button.onPointerUpObservable.add(function() {
-            setSceneIndex(index - 1);
+
+
+    
+        //Adding a light
+        var light = new BABYLON.PointLight("Omni", new BABYLON.Vector3(20, 20, 100), scene);
+    
+        //Adding an Arc Rotate Camera
+        var camera = new BABYLON.ArcRotateCamera("Camera", 0, 0.8, 100, BABYLON.Vector3.Zero(), scene);
+        camera.attachControl(canvas, false);
+        var skull;
+        var skullMaterial = new BABYLON.StandardMaterial("skullmat", scene);
+        // The first parameter can be used to specify which mesh to import. Here we import all meshes
+        BABYLON.SceneLoader.ImportMesh("", "/scenes/", "skull.babylon", scene, function (newMeshes) {
+            // Set the target of the camera to the first imported mesh
+            camera.target = newMeshes[0];
+            skull = newMeshes[0];
+            skull.material = skullMaterial;
         });
-        advtex.addControl(button); 
-        return button;
-}
-
-export default function guiScene(engine) {
-    var guiScene = new BABYLON.Scene(engine);
-
-    var camera = new BABYLON.ArcRotateCamera("Camera", 0, 0.8, 100, BABYLON.Vector3.Zero(), guiScene);
-
-    var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("myUI",true);
-
-    var button1 = createSceneButton("but1", 1,"-200px", "120px", advancedTexture);
-    var button2 = createSceneButton("but2", 2,"-100px", "120px", advancedTexture);
-    var button3 = createSceneButton("but3", 3,"000px", "120px", advancedTexture);
-    var button2 = createSceneButton("but4", 4,"100px", "120px", advancedTexture);
-    var button3 = createSceneButton("but5", 5,"200px", "120px", advancedTexture); 
-    //guiScene.debugLayer.show();
-    return guiScene;
-}   
- var createScene = function () {
-    var scene = new BABYLON.Scene(engine);
-
-    var camera = new BABYLON.FreeCamera("FreeCamera", new BABYLON.Vector3(0, 0, 0), scene);
-
-    var music1 = new BABYLON.Sound("Violons11", "sounds/violons11.wav", scene, 
-		soundReady, { loop: true });
-	var music2 = new BABYLON.Sound("Violons18", "sounds/violons18.wav", scene, 
-		soundReady, { loop: true });
-	var music3 = new BABYLON.Sound("Cellolong", "sounds/cellolong.wav", scene, 
-		soundReady, { loop: true });
-
-	var soundsReady = 0;
-	
-	function soundReady() {
-		soundsReady++;
-		if (soundsReady === 3) {
-			music1.play();
-			music2.play();
-			music3.play();	
-		}
-	}
-	
-    return scene;
-};
+    
+        // Move the light with the camera
+        scene.registerBeforeRender(function () {
+            light.position = camera.position;
+        });
+    
+        // Load in a full screen GUI from the snippet server
+        let advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("GUI", true, scene);
+        let loadedGUI = advancedTexture.parseFromSnippetAsync("D04P4Z");
+    
+        // Get controls by name
+        let sliderX = advancedTexture.getControlByName("RotationXSlider");
+        let sliderY = advancedTexture.getControlByName("RotationYSlider");
+        let sliderZ = advancedTexture.getControlByName("RotationZSlider");
+        let matPicker = advancedTexture.getControlByName("MatColor");
+        let specPicker = advancedTexture.getControlByName("SpecColor");
+    
+        // Add observables to change the rotation
+        sliderX.onValueChangedObservable.add(function(value) {
+            if (skull) {
+                skull.rotation.x = value;
+            }
+        });
+        
+        sliderY.onValueChangedObservable.add(function(value) {
+            if (skull) {
+                skull.rotation.y = value;
+            }
+        });
+        
+        sliderZ.onValueChangedObservable.add(function(value) {
+            if (skull) {
+                skull.rotation.z = value;
+            }
+        });
+    
+        // Add observables to change the color
+        matPicker.onValueChangedObservable.add(function(value) { // value is a color3
+            skullMaterial.diffuseColor.copyFrom(value);
+        });
+    
+        specPicker.onValueChangedObservable.add(function(value) {
+            skullMaterial.specularColor.copyFrom(value);
+        });
+    
+        return that;
+    }
+        
