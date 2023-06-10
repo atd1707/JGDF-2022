@@ -1,70 +1,61 @@
-export default function createStartScene(engine) {
-    let that = {};
-    let scene = (that.scene = new BABYLON.Scene(engine));
+var createScene = function () {
+    var scene = new BABYLON.Scene(engine);
+    var donut = BABYLON.Mesh.CreateTorusKnot("donut", 2, 0.5, 48, 32, 3, 2, scene);
 
+    scene.createDefaultCameraOrLight(true, true, true);
 
+    // Create the 3D UI manager
+    var manager = new BABYLON.GUI.GUI3DManager(scene);
 
-    
-        //Adding a light
-        var light = new BABYLON.PointLight("Omni", new BABYLON.Vector3(20, 20, 100), scene);
-    
-        //Adding an Arc Rotate Camera
-        var camera = new BABYLON.ArcRotateCamera("Camera", 0, 0.8, 100, BABYLON.Vector3.Zero(), scene);
-        camera.attachControl(canvas, false);
-        var skull;
-        var skullMaterial = new BABYLON.StandardMaterial("skullmat", scene);
-        // The first parameter can be used to specify which mesh to import. Here we import all meshes
-        BABYLON.SceneLoader.ImportMesh("", "/scenes/", "skull.babylon", scene, function (newMeshes) {
-            // Set the target of the camera to the first imported mesh
-            camera.target = newMeshes[0];
-            skull = newMeshes[0];
-            skull.material = skullMaterial;
-        });
-    
-        // Move the light with the camera
-        scene.registerBeforeRender(function () {
-            light.position = camera.position;
-        });
-    
-        // Load in a full screen GUI from the snippet server
-        let advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("GUI", true, scene);
-        let loadedGUI = advancedTexture.parseFromSnippetAsync("D04P4Z");
-    
-        // Get controls by name
-        let sliderX = advancedTexture.getControlByName("RotationXSlider");
-        let sliderY = advancedTexture.getControlByName("RotationYSlider");
-        let sliderZ = advancedTexture.getControlByName("RotationZSlider");
-        let matPicker = advancedTexture.getControlByName("MatColor");
-        let specPicker = advancedTexture.getControlByName("SpecColor");
-    
-        // Add observables to change the rotation
-        sliderX.onValueChangedObservable.add(function(value) {
-            if (skull) {
-                skull.rotation.x = value;
-            }
-        });
+    // Create a horizontal stack panel
+    var panel = new BABYLON.GUI.StackPanel3D();
+    panel.margin = 0.02;
+  
+    manager.addControl(panel);
+    panel.position.z = -1.5;
+
+    // Let's add some buttons!
+    var addButton = function() {
+        var button = new BABYLON.GUI.Button3D("orientation");
+        panel.addControl(button);
+        button.onPointerUpObservable.add(function(){
+            panel.isVertical = !panel.isVertical;
+        });   
         
-        sliderY.onValueChangedObservable.add(function(value) {
-            if (skull) {
-                skull.rotation.y = value;
-            }
-        });
-        
-        sliderZ.onValueChangedObservable.add(function(value) {
-            if (skull) {
-                skull.rotation.z = value;
-            }
-        });
-    
-        // Add observables to change the color
-        matPicker.onValueChangedObservable.add(function(value) { // value is a color3
-            skullMaterial.diffuseColor.copyFrom(value);
-        });
-    
-        specPicker.onValueChangedObservable.add(function(value) {
-            skullMaterial.specularColor.copyFrom(value);
-        });
-    
-        return that;
+        var text1 = new BABYLON.GUI.TextBlock();
+        text1.text = "change orientation";
+        text1.color = "white";
+        text1.fontSize = 24;
+        button.content = text1;  
     }
-        
+
+    addButton();    
+    addButton();
+    addButton();
+
+
+
+
+
+    var camera = new BABYLON.FreeCamera("FreeCamera", new BABYLON.Vector3(0, 0, 0), scene);
+
+    var music1 = new BABYLON.Sound("Violons11", "assets/sounds/violons11.wav", scene, 
+		soundReady, { loop: true });
+	var music2 = new BABYLON.Sound("Violons18", "assets/sounds/violons18.wav", scene, 
+		soundReady, { loop: true });
+	var music3 = new BABYLON.Sound("Cellolong", "assets/sounds/cellolong.wav", scene, 
+		soundReady, { loop: true });
+
+	var soundsReady = 0;
+	
+	function soundReady() {
+		soundsReady++;
+		if (soundsReady === 3) {
+			music1.play();
+			music2.play();
+			music3.play();	
+		}
+	}
+	
+    return scene;
+};
