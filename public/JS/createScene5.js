@@ -36,7 +36,7 @@ export default function createStartScene(engine) {
 
     // Ground
     var ground = BABYLON.MeshBuilder.CreateGround("ground", { height: 50, width: 50, subdivisions: 4 }, scene);
-    var groundMaterial = new BABYLON.StandardMaterial("groundMaterial", scene);
+    var groundMaterial = new BABYLON.StandardMaterial("villageMaterial", scene);
     groundMaterial.diffuseTexture = new BABYLON.Texture("assets/enviroments/villagegreen.png", scene);
     groundMaterial.diffuseTexture.uScale = 30;
     groundMaterial.diffuseTexture.vScale = 30;
