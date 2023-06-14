@@ -1,130 +1,153 @@
-// working createscene2 version
-const frameRate = 10;
-const xSlide = new BABYLON.Animation(
-  "xSlide",
-  "position.x",
-  frameRate,
-  BABYLON.Animation.ANIMATIONTYPE_FLOAT,
-  BABYLON.Animation.ANIMATIONLOOPMODE_CYCLE
-);
+var soundsReady = 0;
 
-/****BUILD FUNCTIONS ****/
-const buildHouse = (scene) => {
-  const roof = buildRoof();
-  const box = buildBox();
-
-  return BABYLON.Mesh.MergeMeshes([box, roof], true, false, null, false, true);
-};
-
-const buildGround = (scene) => {
-  //Create Village ground
-  const groundMat = new BABYLON.StandardMaterial("groundMat");
-  groundMat.diffuseTexture = new BABYLON.Texture(
-    "assets/environments/villagegreen.png"
-  );
-  groundMat.diffuseTexture.hasAlpha = true;
-
-  const ground = BABYLON.MeshBuilder.CreateGround("ground", {
-    width: 24,
-    height: 24,
-  });
-  ground.material = groundMat;
-
-  //large ground
-  const largeGroundMat = new BABYLON.StandardMaterial("largeGroundMat");
-  largeGroundMat.diffuseTexture = new BABYLON.Texture(
-    "assets/environments/valleygrass.png"
-  );
-
-  const largeGround = BABYLON.MeshBuilder.CreateGroundFromHeightMap(
-    "largeGround",
-    "assets/environments/villageheightmap.png",
-    { width: 150, height: 150, subdivisions: 20, minHeight: 0, maxHeight: 4 }
-  );
-  largeGround.material = largeGroundMat;
-  largeGround.position.y = -0.01;
-};
-
-const buildRoof = (scene) => {
-  const roofMat = new BABYLON.StandardMaterial("roofMat");
-  roofMat.diffuseTexture = new BABYLON.Texture(
-    "https://assets.babylonjs.com/environments/roof.jpg"
-  );
-
-  const roof = BABYLON.MeshBuilder.CreateCylinder("roof", {
-    diameter: 1.3,
-    height: 1.2,
-    tessellation: 3,
-  });
-  roof.material = roofMat;
-  roof.position.y = 1.5;
-  roof.position.x = 0;
-  roof.position.z = 0;
-  roof.scaling.x = 0.75;
-  roof.rotation.z = Math.PI / 2;
-  roof.position.y = 1.22;
-
-  return roof;
-};
-
-const buildBox = (scene) => {
-  const boxMat = new BABYLON.StandardMaterial("boxMat");
-  boxMat.diffuseTexture = new BABYLON.Texture("assets/images/cubehouse.png");
-  const faceUV = [];
-
-  faceUV[0] = new BABYLON.Vector4(0.6, 0.0, 1.0, 1.0); //rear face
-  faceUV[1] = new BABYLON.Vector4(0.0, 0.0, 0.4, 1.0); //front face
-  faceUV[2] = new BABYLON.Vector4(0.4, 0, 0.6, 1.0); //right side
-  faceUV[3] = new BABYLON.Vector4(0.4, 0, 0.6, 1.0); //left side
-
-  const box = BABYLON.MeshBuilder.CreateBox("box", {
-    width: 1,
-    faceUV: faceUV,
-    wrap: true,
-  });
-  box.material = boxMat;
-  box.position.y = 0.5;
-  return box;
-};
-
-export default function createStartScene(engine) {
+export default async function createStartScene(engine) {
   let that = {};
   let scene = (that.scene = new BABYLON.Scene(engine));
-  scene.clearColor = new BABYLON.Color3.Black();
-  const camera = new BABYLON.ArcRotateCamera(
-    "camera",
-    -Math.PI / 2,
-    Math.PI / 2.5,
-    10,
-    new BABYLON.Vector3(0, 0, 0)
+  //var createScene = async function () {
+  //   var scene = new BABYLON.Scene(engine);
+  // var camera = new BABYLON.FreeCamera("FreeCamera", new BABYLON.Vector3(0, 0, 0), scene);
+
+  const soundReady = () => {
+    soundsReady++;
+    if (soundsReady === 3) {
+      music1.play();
+      music2.play();
+      music3.play();
+    }
+  };
+
+  const music1 = new BABYLON.Sound(
+    "Violons11",
+    "assets/audio/violons11.wav",
+    scene,
+    soundReady,
+    { loop: true }
   );
-  camera.attachControl(true);
-  const light = new BABYLON.HemisphericLight(
-    "light",
-    new BABYLON.Vector3(1, 1, 0),
+  const music2 = new BABYLON.Sound(
+    "Violons18",
+    "assets/audio/violons18.wav",
+    scene,
+    soundReady,
+    { loop: true }
+  );
+  const music3 = new BABYLON.Sound(
+    "Cellolong",
+    "assets/audio/cellolong.wav",
+    scene,
+    soundReady,
+    { loop: true }
+  );
+
+  //Adding a light
+  var light = new BABYLON.PointLight(
+    "Omni",
+    new BABYLON.Vector3(20, 20, 100),
     scene
   );
-  light.intensity = 0.7;
-
-  //House
-  let ground = buildGround(scene);
-  let box = buildBox(scene);
-  let roof = buildRoof(scene);
-  //let box2 = buildBox2(scene);
-  //let roof2 = buildRoof2(scene);
-
-  // Skybox
-  var skybox = BABYLON.MeshBuilder.CreateBox("skyBox", { size: 1000.0 }, scene);
-  var skyboxMaterial = new BABYLON.StandardMaterial("skyBox", scene);
-  skyboxMaterial.backFaceCulling = false;
-  skyboxMaterial.reflectionTexture = new BABYLON.CubeTexture(
-    "assets/images/skybox",
+ /* 
+  //Adding an Arc Rotate Camera
+  var camera = new BABYLON.ArcRotateCamera(
+    "Camera",
+    0,
+    0.8,
+    100,
+    BABYLON.Vector3.Zero(),
     scene
   );
-  skyboxMaterial.reflectionTexture.coordinatesMode =
-    BABYLON.Texture.SKYBOX_MODE;
-  skyboxMaterial.disableLighting = true;
-  skybox.material = skyboxMaterial;
+  scene.activeCamera = camera;
+  scene.activeCamera.attachControl(true);
+   
+  //camera.attachControl(canvas, false);
+  var skull;
+  var skullMaterial = new BABYLON.StandardMaterial("skullmat", scene);
+  // The first parameter can be used to specify which mesh to import. Here we import all meshes
+  BABYLON.SceneLoader.ImportMesh(
+    "",
+    "assets/scenes/",
+    "skull.babylon",
+    scene,
+    function (newMeshes) {
+      // Set the target of the camera to the first imported mesh
+      camera.target = newMeshes[0];
+      skull = newMeshes[0];
+      skull.material = skullMaterial;
+    }
+  );
 
+  // Move the light with the camera
+  scene.registerBeforeRender(function () {
+    light.position = camera.position;
+  });
+ 
+
+  // Load in a full screen GUI from the snippet server
+  let advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI(
+    "GUI",
+    true,
+    scene
+  );
+    //let loadedGUI = await advancedTexture.parseFromSnippetAsync("D04P4Z");
+    var panel = new BABYLON.GUI.StackPanel();
+    panel.width = "220px";
+    panel.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT;
+    panel.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_CENTER;
+    advancedTexture.addControl(panel);
+    
+    var header = new BABYLON.GUI.TextBlock();
+    header.text = "Y-rotation: 0 deg";
+    header.height = "30px";
+    header.color = "white";
+    panel.addControl(header); 
+
+    var slider = new BABYLON.GUI.Slider();
+    slider.minimum = 0;
+    slider.maximum = 2 * Math.PI;
+    slider.value = 0;
+    slider.height = "20px";
+    slider.width = "200px";
+    slider.onValueChangedObservable.add(function(value) {
+        header.text = "Y-rotation: " + (BABYLON.Tools.ToDegrees(value) | 0) + " deg";
+        if (skull) {
+            skull.rotation.y = value;
+        }
+    });
+    panel.addControl(slider);
+
+  // Get controls by name
+  let sliderX = advancedTexture.getControlByName("RotationXSlider");
+  let sliderY = advancedTexture.getControlByName("RotationYSlider");
+  let sliderZ = advancedTexture.getControlByName("RotationZSlider");
+  let matPicker = advancedTexture.getControlByName("MatColor");
+  let specPicker = advancedTexture.getControlByName("SpecColor");
+
+  // Add observables to change the rotation
+  sliderX.onValueChangedObservable.add(function (value) {
+    if (skull) {
+      skull.rotation.x = value;
+    }
+  });
+
+  sliderY.onValueChangedObservable.add(function (value) {
+    if (skull) {
+      skull.rotation.y = value;
+    }
+  });
+
+  sliderZ.onValueChangedObservable.add(function (value) {
+    if (skull) {
+      skull.rotation.z = value;
+    }
+  });
+
+  // Add observables to change the color
+  matPicker.onValueChangedObservable.add(function (value) {
+    // value is a color3
+    skullMaterial.diffuseColor.copyFrom(value);
+  });
+
+  specPicker.onValueChangedObservable.add(function (value) {
+    skullMaterial.specularColor.copyFrom(value);
+  });
+*/
   return that;
 }

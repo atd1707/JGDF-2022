@@ -17,10 +17,10 @@ export let scenes = [];
 
 export let engine = new BABYLON.Engine(canvas, true, null, true);
 
-scenes[2] = createScene1(engine);
-scenes[1] = createScene2(engine);
-scenes[0] = createScene3(engine);
-scenes[3] = createScene4(engine);
+scenes[3] = createScene1(engine);
+scenes[2] = createScene2(engine);
+scenes[1] = createScene3(engine);
+scenes[0] = createScene4(engine);
 //scenes[4] = createScene3(engine);
 scene = scenes[1].scene;// starting scene
 
