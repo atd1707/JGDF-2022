@@ -95,15 +95,7 @@ export default function createStartScene(engine) {
             }
         });
 
-        //Play the Idle animation  
-        //idleAnim.start(true, 1.0, idleAnim.from, idleAnim.to, false);
-        //Play the Samba animation  
-        //sambaAnim.start(true, 1.0, sambaAnim.from, sambaAnim.to, false);
-        //Play the walking animation  
-        //walkingAnim.start(true, 1.0, walkingAnim.from, walkingAnim.to, false);
-        //Play the walkingBack animation  
-        //walkingBackAnim.start(true, 1.0, walkingBackAnim.from, walkingBackAnim.to, false);
-    });
+         });
 
     return that;
 }
